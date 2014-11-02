@@ -25,10 +25,24 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f080000;
+        public static final int Cancel=0x7f08000a;
+        public static final int Category=0x7f080001;
+        public static final int CategoryList=0x7f080002;
+        public static final int ImageVideoPicker=0x7f080007;
+        public static final int Location=0x7f080004;
+        public static final int LocationPicker=0x7f080005;
+        public static final int Log=0x7f080008;
+        public static final int Submit=0x7f080009;
+        public static final int Upload=0x7f080006;
+        public static final int action_settings=0x7f08000b;
+        public static final int pager=0x7f080000;
+        public static final int textView=0x7f080003;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
+        public static final int android_frag=0x7f030001;
+        public static final int ios_frag=0x7f030002;
+        public static final int windows_frag=0x7f030003;
     }
     public static final class menu {
         public static final int main=0x7f070000;
