@@ -2,13 +2,59 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical" >
+    android:gravity="top"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="53dp"
+    android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/textView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="50sp"/> 
+        android:layout_height="53dp"
+        android:text="@string/category_text"
+        android:id="@+id/textView2"
+        android:layout_weight="0.71" />
 
+    <Spinner
+        android:layout_width="193dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_weight="0.20" />
+</LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:orientation="horizontal">
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="53dp"
+        android:text="@string/search_text"
+        android:id="@+id/searchTextView"
+        android:layout_weight="0.71" />
+
+    <EditText
+        android:layout_width="193dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchEditText"
+        android:layout_weight="0.20"
+        android:text="@string/search_text"/>
+
+</LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_gravity="center"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:id="@+id/searchButton"
+        android:text="@string/search_text"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/resultsListView"></ListView>
 </LinearLayout>
