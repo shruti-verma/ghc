@@ -16,4 +16,23 @@
         <item>Women Abuse</item>
         <item>Pet Care</item>
     </string-array>
+    
+    <string-array name="logas_category">
+        <item>Anonymous</item>
+        <item>Enter Information</item>
+    </string-array>
+    
+    <string name="upload">Upload</string>
+    <string name="location">Location</string>
+    <string name="logas">Log As</string>
+    <string name="dummyLocation">Dummy Location</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+    <string name="total">Total Requests</string>
+    <string name="completed">Completed</string>
+    <string name="completedCount">10</string>
+    
+    <string name="totalCount">25</string>
+    
+    
 </resources>
