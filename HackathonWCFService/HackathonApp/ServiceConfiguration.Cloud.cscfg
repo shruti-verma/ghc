@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="HackathonApp" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2014-06.2.4">
+  <Role name="WCFServiceWebRole1">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=reportitcloudservice;AccountKey=/JkF7y7O/EY7OOX20TkOl4skCC4VQsq4v3UGAKkl6HjMfo5OARjRBXkxfemkvYLmKUA4ZM1IBuG90R4fQ468LA==" />
+    </ConfigurationSettings>
+  </Role>
+</ServiceConfiguration>

@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DBReportIt" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="DBReportItContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="DBReportIt.C__MigrationHistory" />
+    <EntitySet Name="Complain" EntityType="DBReportIt.Complain" />
+    <EntitySet Name="ComplainAction" EntityType="DBReportIt.ComplainAction" />
+    <AssociationSet Name="FK_dbo_ComplainAction_dbo_Complain_ComplaintID" Association="DBReportIt.FK_dbo_ComplainAction_dbo_Complain_ComplaintID">
+      <End Role="Complain" EntitySet="Complain" />
+      <End Role="ComplainAction" EntitySet="ComplainAction" />
+    </AssociationSet>
+    <EntitySet Name="UserVotesSet" EntityType="DBReportIt.UserVotes" />
+    <AssociationSet Name="ComplainUserVotes" Association="DBReportIt.ComplainUserVotes">
+      <End Role="Complain" EntitySet="Complain" />
+      <End Role="UserVotes" EntitySet="UserVotesSet" />
+    </AssociationSet>
+    <EntitySet Name="UserInfo" EntityType="DBReportIt.UserInfo" />
+    <AssociationSet Name="UserInfoUserVotes" Association="DBReportIt.UserInfoUserVotes">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="UserVotes" EntitySet="UserVotesSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+    </Key>
+    <Property Type="String" Name="MigrationId" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Binary" Name="Model" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Type="String" Name="ProductVersion" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Complain">
+    <Key>
+      <PropertyRef Name="ComplainID" />
+    </Key>
+    <Property Type="Int32" Name="ComplainID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="ComplainCategory" Nullable="false" />
+    <Property Type="String" Name="ComplainCategoryValue" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="UploadFilePath" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Location" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="UserName" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="UserContactNumber" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="ModifiedDate" Nullable="false" Precision="3" />
+    <NavigationProperty Name="ComplainAction" Relationship="DBReportIt.FK_dbo_ComplainAction_dbo_Complain_ComplaintID" FromRole="Complain" ToRole="ComplainAction" />
+    <NavigationProperty Name="UserVotes" Relationship="DBReportIt.ComplainUserVotes" FromRole="Complain" ToRole="UserVotes" />
+  </EntityType>
+  <EntityType Name="ComplainAction">
+    <Key>
+      <PropertyRef Name="ActionID" />
+    </Key>
+    <Property Type="Int32" Name="ActionID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="ComplaintID" Nullable="false" />
+    <Property Type="Int32" Name="ActionType" Nullable="false" />
+    <Property Type="String" Name="ActionForContact" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="ModifiedOn" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Complain" Relationship="DBReportIt.FK_dbo_ComplainAction_dbo_Complain_ComplaintID" FromRole="ComplainAction" ToRole="Complain" />
+  </EntityType>
+  <Association Name="FK_dbo_ComplainAction_dbo_Complain_ComplaintID">
+    <End Type="DBReportIt.Complain" Role="Complain" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="DBReportIt.ComplainAction" Role="ComplainAction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Complain">
+        <PropertyRef Name="ComplainID" />
+      </Principal>
+      <Dependent Role="ComplainAction">
+        <PropertyRef Name="ComplaintID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="UserVotes">
+    <Key>
+      <PropertyRef Name="UserVoteID" />
+    </Key>
+    <Property Type="Int32" Name="UserVoteID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="ComplainID" Nullable="false" />
+    <Property Type="Int32" Name="UserID" Nullable="false" />
+    <NavigationProperty Name="Complain" Relationship="DBReportIt.ComplainUserVotes" FromRole="UserVotes" ToRole="Complain" />
+    <NavigationProperty Name="UserInfo" Relationship="DBReportIt.UserInfoUserVotes" FromRole="UserVotes" ToRole="UserInfo" />
+  </EntityType>
+  <Association Name="ComplainUserVotes">
+    <End Type="DBReportIt.Complain" Role="Complain" Multiplicity="1" />
+    <End Type="DBReportIt.UserVotes" Role="UserVotes" Multiplicity="*" />
+  </Association>
+  <EntityType Name="UserInfo">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Type="Int32" Name="UserID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="UserName" Nullable="false" />
+    <Property Type="String" Name="UserAppID" Nullable="false" />
+    <Property Type="String" Name="UserContact" Nullable="false" />
+    <NavigationProperty Name="UserVotes" Relationship="DBReportIt.UserInfoUserVotes" FromRole="UserInfo" ToRole="UserVotes" />
+  </EntityType>
+  <Association Name="UserInfoUserVotes">
+    <End Type="DBReportIt.UserInfo" Role="UserInfo" Multiplicity="1" />
+    <End Type="DBReportIt.UserVotes" Role="UserVotes" Multiplicity="*" />
+  </Association>
+</Schema>
