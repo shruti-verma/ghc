@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GHCReportItModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="GHCReportItModelStoreContainer">
+    <EntitySet Name="Complain" EntityType="GHCReportItModel.Store.Complain" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ComplainAction" EntityType="GHCReportItModel.Store.ComplainAction" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserInfo" EntityType="GHCReportItModel.Store.UserInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserVotesSet" EntityType="GHCReportItModel.Store.UserVotesSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_ComplainUserVotes" Association="GHCReportItModel.Store.FK_ComplainUserVotes">
+      <End Role="Complain" EntitySet="Complain" />
+      <End Role="UserVotesSet" EntitySet="UserVotesSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_ComplainAction_dbo_Complain_ComplaintID" Association="GHCReportItModel.Store.FK_dbo_ComplainAction_dbo_Complain_ComplaintID">
+      <End Role="Complain" EntitySet="Complain" />
+      <End Role="ComplainAction" EntitySet="ComplainAction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserInfoUserVotes" Association="GHCReportItModel.Store.FK_UserInfoUserVotes">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="UserVotesSet" EntitySet="UserVotesSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Complain">
+    <Key>
+      <PropertyRef Name="ComplainID" />
+    </Key>
+    <Property Name="ComplainID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ComplainCategory" Type="int" Nullable="false" />
+    <Property Name="ComplainCategoryValue" Type="nvarchar(max)" />
+    <Property Name="UploadFilePath" Type="nvarchar(max)" />
+    <Property Name="Location" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="UserName" Type="nvarchar(max)" />
+    <Property Name="UserContactNumber" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ComplainAction">
+    <Key>
+      <PropertyRef Name="ActionID" />
+    </Key>
+    <Property Name="ActionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ComplaintID" Type="int" Nullable="false" />
+    <Property Name="ActionType" Type="int" Nullable="false" />
+    <Property Name="ActionForContact" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserInfo">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserAppID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserContact" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserVotesSet">
+    <Key>
+      <PropertyRef Name="UserVoteID" />
+    </Key>
+    <Property Name="UserVoteID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ComplainID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="Complain_ComplainID" Type="int" Nullable="false" />
+    <Property Name="UserInfo_UserID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ComplainUserVotes">
+    <End Role="Complain" Type="GHCReportItModel.Store.Complain" Multiplicity="1" />
+    <End Role="UserVotesSet" Type="GHCReportItModel.Store.UserVotesSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Complain">
+        <PropertyRef Name="ComplainID" />
+      </Principal>
+      <Dependent Role="UserVotesSet">
+        <PropertyRef Name="Complain_ComplainID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_ComplainAction_dbo_Complain_ComplaintID">
+    <End Role="Complain" Type="GHCReportItModel.Store.Complain" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ComplainAction" Type="GHCReportItModel.Store.ComplainAction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Complain">
+        <PropertyRef Name="ComplainID" />
+      </Principal>
+      <Dependent Role="ComplainAction">
+        <PropertyRef Name="ComplaintID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserInfoUserVotes">
+    <End Role="UserInfo" Type="GHCReportItModel.Store.UserInfo" Multiplicity="1" />
+    <End Role="UserVotesSet" Type="GHCReportItModel.Store.UserVotesSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserVotesSet">
+        <PropertyRef Name="UserInfo_UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

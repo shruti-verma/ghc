@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GHCReportItModelStoreContainer" CdmEntityContainer="GHCReportItEntities">
+    <EntitySetMapping Name="Complain">
+      <EntityTypeMapping TypeName="GHCReportItModel.Complain">
+        <MappingFragment StoreEntitySet="Complain">
+          <ScalarProperty Name="ComplainID" ColumnName="ComplainID" />
+          <ScalarProperty Name="ComplainCategory" ColumnName="ComplainCategory" />
+          <ScalarProperty Name="ComplainCategoryValue" ColumnName="ComplainCategoryValue" />
+          <ScalarProperty Name="UploadFilePath" ColumnName="UploadFilePath" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserContactNumber" ColumnName="UserContactNumber" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ComplainAction">
+      <EntityTypeMapping TypeName="GHCReportItModel.ComplainAction">
+        <MappingFragment StoreEntitySet="ComplainAction">
+          <ScalarProperty Name="ActionID" ColumnName="ActionID" />
+          <ScalarProperty Name="ComplaintID" ColumnName="ComplaintID" />
+          <ScalarProperty Name="ActionType" ColumnName="ActionType" />
+          <ScalarProperty Name="ActionForContact" ColumnName="ActionForContact" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserInfo">
+      <EntityTypeMapping TypeName="GHCReportItModel.UserInfo">
+        <MappingFragment StoreEntitySet="UserInfo">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserAppID" ColumnName="UserAppID" />
+          <ScalarProperty Name="UserContact" ColumnName="UserContact" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserVotesSet">
+      <EntityTypeMapping TypeName="GHCReportItModel.UserVotesSet">
+        <MappingFragment StoreEntitySet="UserVotesSet">
+          <ScalarProperty Name="UserVoteID" ColumnName="UserVoteID" />
+          <ScalarProperty Name="ComplainID" ColumnName="ComplainID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Complain_ComplainID" ColumnName="Complain_ComplainID" />
+          <ScalarProperty Name="UserInfo_UserID" ColumnName="UserInfo_UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>2.4</ProductVersion>
+    <ProjectGuid>c5170b95-05dd-42d8-b4fe-caadac51b18c</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HackathonApp</RootNamespace>
+    <AssemblyName>HackathonApp</AssemblyName>
+    <StartDevelopmentStorage>True</StartDevelopmentStorage>
+    <Name>HackathonApp</Name>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- Items for the project -->
+  <ItemGroup>
+    <ServiceDefinition Include="ServiceDefinition.csdef" />
+    <ServiceConfiguration Include="ServiceConfiguration.Local.cscfg" />
+    <ServiceConfiguration Include="ServiceConfiguration.Cloud.cscfg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WCFServiceWebRole1\WCFServiceWebRole1.csproj">
+      <Name>WCFServiceWebRole1</Name>
+      <Project>{76507f03-55fc-4c6b-a02d-7e5120212ebc}</Project>
+      <Private>True</Private>
+      <RoleType>Web</RoleType>
+      <RoleName>WCFServiceWebRole1</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Profiles" />
+    <Folder Include="WCFServiceWebRole1Content\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="WCFServiceWebRole1Content\diagnostics.wadcfg">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishProfile Include="Profiles\HackathonAppProduction.azurePubxml" />
+  </ItemGroup>
+  <!-- Import the target files for this project template -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+    <CloudExtensionsDir Condition=" '$(CloudExtensionsDir)' == '' ">$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Windows Azure Tools\2.4\</CloudExtensionsDir>
+  </PropertyGroup>
+  <Import Project="$(CloudExtensionsDir)Microsoft.WindowsAzure.targets" />
+</Project>

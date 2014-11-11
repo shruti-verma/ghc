@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "HackathonApp", "HackathonApp\HackathonApp.ccproj", "{C5170B95-05DD-42D8-B4FE-CAADAC51B18C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFServiceWebRole1", "WCFServiceWebRole1\WCFServiceWebRole1.csproj", "{76507F03-55FC-4C6B-A02D-7E5120212EBC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C5170B95-05DD-42D8-B4FE-CAADAC51B18C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5170B95-05DD-42D8-B4FE-CAADAC51B18C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5170B95-05DD-42D8-B4FE-CAADAC51B18C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5170B95-05DD-42D8-B4FE-CAADAC51B18C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76507F03-55FC-4C6B-A02D-7E5120212EBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76507F03-55FC-4C6B-A02D-7E5120212EBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76507F03-55FC-4C6B-A02D-7E5120212EBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76507F03-55FC-4C6B-A02D-7E5120212EBC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
