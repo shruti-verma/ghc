@@ -19,6 +19,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
 	public static final String COLUMN_STATUS = "status";
 	public static final String COLUMN_USERNAME = "username";
 	public static final String COLUMN_COMMENTS = "comments";
+	public static final String COLUMN_LOCATION = "location";
 	
 	public MyDBHandler(Context context, String name, CursorFactory factory,
 			int version, DatabaseErrorHandler errorHandler) {
@@ -33,7 +34,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
 	             TABLE_COMPLIANTS + "("
 	             + COLUMN_ID + " INTEGER PRIMARY KEY," + COLUMN_COMPLIANTNUM 
 	             + " INTEGER," + COLUMN_CATEGORY+ " STRING," + COLUMN_STATUS+ " STRING," + COLUMN_USERNAME+ " STRING," 
-	             + COLUMN_COMMENTS+ " STRING" + ")";
+	             + COLUMN_COMMENTS+ " STRING," +  COLUMN_LOCATION+ " STRING," + ")";
 		
 	      db.execSQL(CREATE_COMPLIANTS_TABLE);
 	}
@@ -44,5 +45,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_COMPLIANTS);
 	      onCreate(db);
 	}
+	
+	
 }
 
