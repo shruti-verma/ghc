@@ -1,8 +1,13 @@
 package com.csfaq.reportit;
 
-import com.csfaq.reportit.R;
 
+import com.csfaq.reportit.utils.Utils;
+import com.csfaq.reportit.R;
+import com.csfaq.reportit.MainActivity;
+
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,6 +36,7 @@ public class Complain extends Fragment {
             ArrayAdapter<String> aa = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, categoryItems);
 
             categorySpinner.setAdapter(aa);
+            
 
             categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
@@ -48,7 +54,7 @@ public class Complain extends Fragment {
             
             EditText tv1 = (EditText) android1.findViewById(R.id.description);
             tv1.setText("");
-            
+                    
     		
             
             Button submitButton = (Button)android1.findViewById(R.id.Submit);
@@ -56,7 +62,22 @@ public class Complain extends Fragment {
                 @Override
                 public void onClick(View v) {
     			                	Toast.makeText(getActivity(), "Thanks for submitting the complaint! We will get back to you shortly! )",
-                			   Toast.LENGTH_LONG).show();           
+                			   Toast.LENGTH_LONG).show();  
+            
+    			          Utils.createNotification(MainActivity.getContext(), null, "Submit");
+    			          
+    			  		// Post the notifications at a random time.
+    			  		new Handler().postDelayed(new Runnable() {
+
+    			  			@Override
+    			  			public void run() {
+    			  				// This method will be executed once the timer is over
+    			  				Utils.createNotification(MainActivity.getContext(), null, "DBSubmit");
+    			  			}
+    			  		}, Utils.randInt(8000, 14000));
+
+    			            		
+    			            	
                 } });
           
 	     
@@ -67,4 +88,5 @@ public class Complain extends Fragment {
     logasSpinner.setAdapter(logCat);
             
 	        return android1;
+	        
 }}

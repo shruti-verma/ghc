@@ -5,6 +5,7 @@ import com.csfaq.reportit.R;
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.widget.SimpleAdapter;
@@ -14,10 +15,20 @@ public class MainActivity extends FragmentActivity{
     TabPagerAdapter TabAdapter;
 	ActionBar actionBar;
 
+	private static Context mContext ;
+	
+	public static Context getContext() {
+	      //  return instance.getApplicationContext();
+	      return mContext;
+	    }
+
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        mContext = getApplicationContext();
         
         TabAdapter = new TabPagerAdapter(getSupportFragmentManager());
         
