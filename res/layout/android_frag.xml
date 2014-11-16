@@ -28,19 +28,19 @@
         android:id="@+id/description"
         android:layout_width="match_parent"
         android:layout_height="113dp"
-        android:textSize="20sp" 
-        android:inputType="text"
-        android:text="Enter short description of your complaint(Optional)"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/back"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
+        android:gravity="top"
+        android:inputType="text"
         android:lines="4"
         android:maxLines="6"
-        android:gravity="top"
         android:maxWidth="50dp"
-        android:textDirection="ltr"/>
+        android:text="Enter short description of your complaint(Optional)"
+        android:textDirection="ltr"
+        android:textSize="20sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -57,8 +57,7 @@
             android:id="@+id/LocationPicker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/dummyLocation"/>
-           
+            android:text="@string/dummyLocation" />
     </LinearLayout>
 
     <LinearLayout
@@ -75,8 +74,7 @@
         <Button
             android:id="@+id/ImageVideoPicker"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-        />
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <LinearLayout
@@ -106,16 +104,15 @@
             android:id="@+id/Submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/submit" 
             android:layout_marginRight="10dp"
-            />
+            android:text="@string/submit" />
 
         <Button
             android:id="@+id/Cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/cancel" 
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:text="@string/cancel" />
     </LinearLayout>
 
     <LinearLayout
@@ -127,35 +124,29 @@
             android:id="@+id/total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/total"
-            android:layout_marginRight="10dp " />
-        
+            android:layout_marginRight="10dp "
+            android:text="@string/total" />
+
         <TextView
             android:id="@+id/totalCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/totalCount"
-            android:layout_marginRight="10dp" />
-        
+            android:layout_marginRight="10dp"
+            android:text="@string/totalCount" />
 
         <TextView
             android:id="@+id/completed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/completed"
-            android:layout_marginRight="10dp">           
-        </TextView>
-        
-        
+            android:layout_marginRight="10dp"
+            android:text="@string/completed" />
 
         <TextView
             android:id="@+id/completedCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/completedCount"
-            android:layout_marginRight="10dp">           >
-        </TextView>
-        
+            android:layout_marginRight="10dp"
+            android:text="@string/completedCount" />
     </LinearLayout>
 
 </LinearLayout>

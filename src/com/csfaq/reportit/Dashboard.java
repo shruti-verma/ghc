@@ -21,44 +21,44 @@ import com.androidplot.xy.XYPlot;
 
 
 public class Dashboard extends Fragment {
-	 @Override
-	    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-	            Bundle savedInstanceState) {
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
 
-         String[] categoryItems = getResources().getStringArray(R.array.complaint_category);
+		String[] categoryItems = getResources().getStringArray(R.array.complaint_category);
 
-         View windows = inflater.inflate(R.layout.windows_frag, container, false);
-         XYPlot byCategory = (XYPlot)windows.findViewById(R.id.ByCategoryXYPlot);
+		View windows = inflater.inflate(R.layout.windows_frag, container, false);
+		XYPlot byCategory = (XYPlot)windows.findViewById(R.id.ByCategoryXYPlot);
 
-         // Create two arrays of y-values to plot:
-         Number[] series1Numbers = {1, 8, 5, 2, 7, 4};
-         String[] series2Numbers = {"Auto/Bus", "Accident", "Bribe", "Fire", "Police"};
+		// Create two arrays of y-values to plot:
+		Number[] series1Numbers = {1, 8, 5, 2, 7, 4};
+		String[] series2Numbers = {"Auto/Bus", "Accident", "Bribe", "Fire", "Police"};
 
-         SimpleXYSeries series1 = new SimpleXYSeries(
-                 Arrays.asList(series1Numbers),          // SimpleXYSeries takes a List so turn our array into a List
-                 SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, // Y_VALS_ONLY means use the element index as the x value
-                 "Series1");                             // Set the display title of the series
-         //SimpleXYSeries series2 = new SimpleXYSeries(Arrays.asList(series2Numbers), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY,
-           //      "Series2");
+		SimpleXYSeries series1 = new SimpleXYSeries(
+				Arrays.asList(series1Numbers),          // SimpleXYSeries takes a List so turn our array into a List
+				SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, // Y_VALS_ONLY means use the element index as the x value
+				"Series1");                             // Set the display title of the series
+		//SimpleXYSeries series2 = new SimpleXYSeries(Arrays.asList(series2Numbers), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY,
+		//      "Series2");
 
-         LineAndPointFormatter series1Format = new LineAndPointFormatter(Color.CYAN, Color.GRAY, Color.MAGENTA, new PointLabelFormatter(5));              // fill color (optional)
-         BarFormatter barFormatter = new BarFormatter(Color.LTGRAY, Color.CYAN);
+		LineAndPointFormatter series1Format = new LineAndPointFormatter(Color.CYAN, Color.GRAY, Color.MAGENTA, new PointLabelFormatter(5));              // fill color (optional)
+		BarFormatter barFormatter = new BarFormatter(Color.LTGRAY, Color.CYAN);
 
-         byCategory.addSeries(series1, barFormatter);
-         //byCategory.addSeries(series2, new LineAndPointFormatter(Color.RED, Color.GREEN, Color.DKGRAY, new BarFormatter(Color.GREEN.)));
+		byCategory.addSeries(series1, barFormatter);
+		//byCategory.addSeries(series2, new LineAndPointFormatter(Color.RED, Color.GREEN, Color.DKGRAY, new BarFormatter(Color.GREEN.)));
 
-         // Reduce the number of range labels
-         byCategory.setTicksPerRangeLabel(3);
-         byCategory.setTicksPerDomainLabel(2);
+		// Reduce the number of range labels
+		byCategory.setTicksPerRangeLabel(3);
+		byCategory.setTicksPerDomainLabel(2);
 
-         // By default, AndroidPlot displays developer guides to aid in laying out your plot.
-         // To get rid of them call disableAllMarkup():
-         //byCategory.disableAllMarkup();
+		// By default, AndroidPlot displays developer guides to aid in laying out your plot.
+		// To get rid of them call disableAllMarkup():
+		//byCategory.disableAllMarkup();
 
-         byCategory.getBackgroundPaint().setAlpha(0);
-         byCategory.getGraphWidget().setDomainValueFormat(new XAxisLabelFormat(series2Numbers));
-         byCategory.getGraphWidget().getBackgroundPaint().setAlpha(0);
-         byCategory.getGraphWidget().getGridBackgroundPaint().setAlpha(0);
+		byCategory.getBackgroundPaint().setAlpha(0);
+		byCategory.getGraphWidget().setDomainValueFormat(new XAxisLabelFormat(series2Numbers));
+		byCategory.getGraphWidget().getBackgroundPaint().setAlpha(0);
+		byCategory.getGraphWidget().getGridBackgroundPaint().setAlpha(0);
 
-         return windows;
-}}
+		return windows;
+	}}

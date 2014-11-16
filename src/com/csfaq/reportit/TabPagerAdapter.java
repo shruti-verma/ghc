@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 public class TabPagerAdapter extends FragmentStatePagerAdapter {
-    public TabPagerAdapter(FragmentManager fm) {
+	public TabPagerAdapter(FragmentManager fm) {
 		super(fm);
 		// TODO Auto-generated constructor stub
 	}
@@ -13,18 +13,18 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
 	@Override
 	public Fragment getItem(int i) {
 		switch (i) {
-        case 0:
-            //Fragement for Android Tab
-            return new Complain();
-        case 1:
-           //Fragment for Ios Tab
-            return new Search();
-        case 2:
-            //Fragment for Windows Tab
-            return new Dashboard();
-        }
+		case 0:
+			//Fragement for Android Tab
+			return new Complain();
+		case 1:
+			//Fragment for Ios Tab
+			return new Search();
+		case 2:
+			//Fragment for Windows Tab
+			return new Dashboard();
+		}
 		return null;
-		
+
 	}
 
 	@Override
@@ -34,4 +34,4 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
 	}
 
 
-    }
+}

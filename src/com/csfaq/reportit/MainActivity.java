@@ -12,70 +12,70 @@ import android.widget.SimpleAdapter;
 
 public class MainActivity extends FragmentActivity{
 	ViewPager Tab;
-    TabPagerAdapter TabAdapter;
+	TabPagerAdapter TabAdapter;
 	ActionBar actionBar;
 
 	private static Context mContext ;
-	
-	public static Context getContext() {
-	      //  return instance.getApplicationContext();
-	      return mContext;
-	    }
 
-	
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        
-        mContext = getApplicationContext();
-        
-        TabAdapter = new TabPagerAdapter(getSupportFragmentManager());
-        
-        Tab = (ViewPager)findViewById(R.id.pager);
-        Tab.setOnPageChangeListener(
-                new ViewPager.SimpleOnPageChangeListener() {
-                    @Override
-                    public void onPageSelected(int position) {
-                       
-                    	actionBar = getActionBar();
-                    	actionBar.setSelectedNavigationItem(position);                    }
-                });
-        Tab.setAdapter(TabAdapter);
-        
-        actionBar = getActionBar();
-        //Enable Tabs on Action Bar
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        ActionBar.TabListener tabListener = new ActionBar.TabListener(){
+	public static Context getContext() {
+		//  return instance.getApplicationContext();
+		return mContext;
+	}
+
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+
+		mContext = getApplicationContext();
+
+		TabAdapter = new TabPagerAdapter(getSupportFragmentManager());
+
+		Tab = (ViewPager)findViewById(R.id.pager);
+		Tab.setOnPageChangeListener(
+				new ViewPager.SimpleOnPageChangeListener() {
+					@Override
+					public void onPageSelected(int position) {
+
+						actionBar = getActionBar();
+						actionBar.setSelectedNavigationItem(position);                    }
+				});
+		Tab.setAdapter(TabAdapter);
+
+		actionBar = getActionBar();
+		//Enable Tabs on Action Bar
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		ActionBar.TabListener tabListener = new ActionBar.TabListener(){
 
 			@Override
 			public void onTabReselected(android.app.ActionBar.Tab tab,
 					FragmentTransaction ft) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
-			 public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
-	          
-	            Tab.setCurrentItem(tab.getPosition());
-	        }
+			public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
+
+				Tab.setCurrentItem(tab.getPosition());
+			}
 
 			@Override
 			public void onTabUnselected(android.app.ActionBar.Tab tab,
 					FragmentTransaction ft) {
 				// TODO Auto-generated method stub
-				
+
 			}};
 			//Add New Tab
 			actionBar.addTab(actionBar.newTab().setText("Complain").setTabListener(tabListener));
 			actionBar.addTab(actionBar.newTab().setText("Search").setTabListener(tabListener));
 			actionBar.addTab(actionBar.newTab().setText("Dashboard").setTabListener(tabListener));
 
-			
-    }
+
+	}
 
 
 
-    
+
 }

@@ -112,28 +112,28 @@ public class Complain extends Fragment {
 		return android1;
 	}
 
-		public void onActivityResult(int requestCode, int resultCode, Intent data) {
-			if (requestCode == IMAGE_PICKER_SELECT && resultCode == Activity.RESULT_OK) {
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == IMAGE_PICKER_SELECT && resultCode == Activity.RESULT_OK) {
 			MainActivity activity = (MainActivity)getActivity();
 			Bitmap bitmap = getBitmapFromCameraData(data, activity);
-			}
-			}
-			/**
-			* Use for decoding camera response data.
-			*
-			* @param data
-			* @param context
-			* @return
-			*/
-			public static Bitmap getBitmapFromCameraData(Intent data, Context context){
-			Uri selectedImage = data.getData();
-			String[] filePathColumn = { MediaStore.Images.Media.DATA };
-			Cursor cursor = context.getContentResolver().query(selectedImage,filePathColumn, null, null, null);
-			cursor.moveToFirst();
-			int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-			String picturePath = cursor.getString(columnIndex);
-			cursor.close();
-			return BitmapFactory.decodeFile(picturePath);
-			}
-			
+		}
 	}
+	/**
+	 * Use for decoding camera response data.
+	 *
+	 * @param data
+	 * @param context
+	 * @return
+	 */
+	public static Bitmap getBitmapFromCameraData(Intent data, Context context){
+		Uri selectedImage = data.getData();
+		String[] filePathColumn = { MediaStore.Images.Media.DATA };
+		Cursor cursor = context.getContentResolver().query(selectedImage,filePathColumn, null, null, null);
+		cursor.moveToFirst();
+		int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+		String picturePath = cursor.getString(columnIndex);
+		cursor.close();
+		return BitmapFactory.decodeFile(picturePath);
+	}
+
+}

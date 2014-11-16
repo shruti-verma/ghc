@@ -34,8 +34,8 @@ public class Utils {
 		if (type.equals("Submit")) {
 			// Prepare intent which is triggered if the
 			// notification is selected
-			
-			  
+
+
 			Intent intent = new Intent(ctx, Complain.class);
 			PendingIntent pIntent = PendingIntent.getActivity(ctx, 0, intent, 0);
 
@@ -48,8 +48,8 @@ public class Utils {
 			//.addAction(R.drawable.ic_launcher, "More", pIntent)
 			//.addAction(R.drawable.ic_launcher, "And more", pIntent)
 			.build();
-			
-			
+
+
 			NotificationManager notificationManager = (NotificationManager) ctx.getSystemService(ctx.NOTIFICATION_SERVICE);
 			// hide the notification after its selected
 			notification.flags |= Notification.FLAG_AUTO_CANCEL;

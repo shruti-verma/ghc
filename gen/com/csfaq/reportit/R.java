@@ -30,6 +30,7 @@ public final class R {
         public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
+        public static final int ByCategoryXYPlot=0x7f090015;
         public static final int Cancel=0x7f09000b;
         public static final int ImageVideoPicker=0x7f090007;
         public static final int Location=0x7f090004;
@@ -48,7 +49,6 @@ public final class R {
         public static final int searchEditText=0x7f090011;
         public static final int searchTextView=0x7f090010;
         public static final int spinner=0x7f090002;
-        public static final int textView=0x7f090015;
         public static final int textView1=0x7f090014;
         public static final int textView2=0x7f090001;
         public static final int total=0x7f09000c;

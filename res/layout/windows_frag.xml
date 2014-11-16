@@ -4,11 +4,11 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical" >
+
     <com.androidplot.xy.XYPlot
         android:id="@+id/ByCategoryXYPlot"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        title="Stats"/>
-
+        title="Stats" />
 
 </LinearLayout>

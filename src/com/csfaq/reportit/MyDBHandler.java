@@ -12,7 +12,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
 	private static final int DATABASE_VERSION = 1;
 	private static final String DATABASE_NAME = "ReportIt.db";
 	public static final String TABLE_COMPLIANTS = "Complaints";
-	
+
 	public static final String COLUMN_ID = "_id";
 	public static final String COLUMN_COMPLIANTNUM = "compliantnum";
 	public static final String COLUMN_CATEGORY = "catgeory";
@@ -20,7 +20,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
 	public static final String COLUMN_USERNAME = "username";
 	public static final String COLUMN_COMMENTS = "comments";
 	public static final String COLUMN_LOCATION = "location";
-	
+
 	public MyDBHandler(Context context, String name, CursorFactory factory,
 			int version, DatabaseErrorHandler errorHandler) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -31,21 +31,21 @@ public class MyDBHandler extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 
 		String CREATE_COMPLIANTS_TABLE = "CREATE TABLE " +
-	             TABLE_COMPLIANTS + "("
-	             + COLUMN_ID + " INTEGER PRIMARY KEY," + COLUMN_COMPLIANTNUM 
-	             + " INTEGER," + COLUMN_CATEGORY+ " STRING," + COLUMN_STATUS+ " STRING," + COLUMN_USERNAME+ " STRING," 
-	             + COLUMN_COMMENTS+ " STRING," +  COLUMN_LOCATION+ " STRING," + ")";
-		
-	      db.execSQL(CREATE_COMPLIANTS_TABLE);
+				TABLE_COMPLIANTS + "("
+				+ COLUMN_ID + " INTEGER PRIMARY KEY," + COLUMN_COMPLIANTNUM 
+				+ " INTEGER," + COLUMN_CATEGORY+ " STRING," + COLUMN_STATUS+ " STRING," + COLUMN_USERNAME+ " STRING," 
+				+ COLUMN_COMMENTS+ " STRING," +  COLUMN_LOCATION+ " STRING," + ")";
+
+		db.execSQL(CREATE_COMPLIANTS_TABLE);
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int arg1, int arg2) {
 		// TODO Auto-generated method stub
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_COMPLIANTS);
-	      onCreate(db);
+		onCreate(db);
 	}
-	
-	
+
+
 }
 
