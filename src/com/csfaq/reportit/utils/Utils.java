@@ -8,9 +8,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.csfaq.reportit.Complain;
 import com.csfaq.reportit.NotificationReceiverActivity;
 import com.csfaq.reportit.R;
+import com.csfaq.reportit.Activity.ComplaintFragment;
 
 import java.util.Random;
 
@@ -38,7 +38,7 @@ public class Utils {
 			// notification is selected
 
 
-			Intent intent = new Intent(ctx, Complain.class);
+			Intent intent = new Intent(ctx, ComplaintFragment.class);
 			PendingIntent pIntent = PendingIntent.getActivity(ctx, 0, intent, 0);
 
 			// Build notification
@@ -60,7 +60,7 @@ public class Utils {
 		} else if (type.equals("DBSubmit")) {
 			// Prepare intent which is triggered if the
 			// notification is selected
-			Intent intent = new Intent(ctx,Complain.class);
+			Intent intent = new Intent(ctx,ComplaintFragment.class);
 			PendingIntent pIntent = PendingIntent.getActivity(ctx, 0, intent, 0);
 
 			// Build notification

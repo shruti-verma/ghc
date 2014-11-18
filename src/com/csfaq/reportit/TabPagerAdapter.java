@@ -1,5 +1,9 @@
 package com.csfaq.reportit;
 
+import com.csfaq.reportit.Activity.ComplaintFragment;
+import com.csfaq.reportit.Activity.DashboardFragment;
+import com.csfaq.reportit.Activity.SearchFragment;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -14,14 +18,14 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
 	public Fragment getItem(int i) {
 		switch (i) {
 		case 0:
-			//Fragement for Android Tab
-			return new Complain();
+			//Fragement for complaint
+			return new ComplaintFragment();
 		case 1:
-			//Fragment for Ios Tab
-			return new Search();
+			//Fragment for search
+			return new SearchFragment();
 		case 2:
-			//Fragment for Windows Tab
-			return new Dashboard();
+			//Fragment for dashboard
+			return new DashboardFragment();
 		}
 		return null;
 
@@ -29,8 +33,7 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
 
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
-		return 3; //No of Tabs
+		return 3; 
 	}
 
 
