@@ -15,6 +15,8 @@ import com.csfaq.reportit.R;
 import java.util.Random;
 
 public class Utils {
+	
+	public static String TAG = Utils.class.getName();
 
 	public static int randInt(int min, int max) {
 
