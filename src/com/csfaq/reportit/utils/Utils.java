@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.csfaq.reportit.NotificationReceiverActivity;
 import com.csfaq.reportit.R;
 import com.csfaq.reportit.Activity.ComplaintFragment;
 

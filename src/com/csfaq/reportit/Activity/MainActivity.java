@@ -1,7 +1,7 @@
 package com.csfaq.reportit.Activity;
 
 import com.csfaq.reportit.R;
-import com.csfaq.reportit.TabPagerAdapter;
+import com.csfaq.reportit.Adapter.TabPagerAdapter;
 import com.csfaq.reportit.R.id;
 import com.csfaq.reportit.R.layout;
 

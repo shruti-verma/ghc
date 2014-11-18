@@ -5,10 +5,10 @@ import com.androidplot.xy.PointLabelFormatter;
 import com.androidplot.xy.XYPlot;
 import com.androidplot.xy.XYSeriesFormatter;
 import com.csfaq.reportit.R;
-import com.csfaq.reportit.XAxisLabelFormat;
 import com.csfaq.reportit.R.array;
 import com.csfaq.reportit.R.id;
 import com.csfaq.reportit.R.layout;
+import com.csfaq.reportit.plot.XAxisLabelFormat;
 
 import android.graphics.Paint;
 import android.os.Bundle;
