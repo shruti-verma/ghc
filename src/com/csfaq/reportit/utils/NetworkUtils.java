@@ -25,30 +25,6 @@ public class NetworkUtils {
 	
 	public static String TAG = NetworkUtils.class.getName();
 	
-	public void postData(String url, List<NameValuePair> nameValuePairs) {
-		
-	    // Create a new HttpClient and Post Header
-	    HttpClient httpclient = new DefaultHttpClient();
-	    //HttpPost httppost = new HttpPost("http://www.yoursite.com/script.php");
-	    HttpPost httppost = new HttpPost(url);
-
-	    try {
-	        // Add your data
-//	        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-//	        nameValuePairs.add(new BasicNameValuePair("id", "12345"));
-//	        nameValuePairs.add(new BasicNameValuePair("stringdata", "AndDev is Cool!"));
-	        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-
-	        // Execute HTTP Post Request
-	        HttpResponse response = httpclient.execute(httppost);
-	        
-	    } catch (ClientProtocolException e) {
-	    	Log.e(TAG, "Error while posting", e);
-	    } catch (IOException e) {
-	    	Log.e(TAG, "Error while posting", e);
-	    }
-	} 
-
     public static String loadFromNetwork(String urlString) throws IOException {
 
         InputStream stream = null;

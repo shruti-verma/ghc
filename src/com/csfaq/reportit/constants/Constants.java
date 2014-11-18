@@ -1,5 +1,11 @@
 package com.csfaq.reportit.constants;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
 public class Constants {
 
     public static final String BROWSER_USER_AGENT =
@@ -10,5 +16,21 @@ public class Constants {
 	public static final String CITY_TRAFFIC_POLICE_PARAMS = "/doSubmit/postcomplaint.aspx?txtname=%s&txtphone=%s&txtemail=%s&txtCategory=%d&txtcomplaint=%s&stname=&Submit=Submit";
 	
 	public static final String CITY_TRAFFIC_POLICE_URL = CITY_TRAFFIC_POLICE_BASE_URL + CITY_TRAFFIC_POLICE_PARAMS;
+	
+	
+	
+	
+	
+	
+	public static final String BBMP_POST_URL = "http://vigeyegpms.in/bbmp/?module=helpdeskpublic&action=raisecomplaint";
+	public static List<NameValuePair> BBMP_POST_HEADER = new ArrayList<NameValuePair>();
+	public static final String BBMP_POST_BODY = "rs=updateRaiseComplaint&rsargs[]=subject!COL!%s!ROW!message!COL!!ROW!name!COL!%s!ROW!mobile!COL!%s!ROW!telephone!COL!!ROW!emailid!COL!%s!ROW!wardid!COL!%s!ROW!location!COL!%s!ROW!Submit!COL!Submit!ROW!Submit!COL!Reset!ROW!rcid!COL!!ROW!action!COL!raisecomplaint!ROW!module!COL!helpdeskpublic!ROW!message2!COL!%s&rsargs[]=post_data";
 
+	static {
+		BBMP_POST_HEADER.add(new BasicNameValuePair("Host", "vigeyegpms.in"));
+		BBMP_POST_HEADER.add(new BasicNameValuePair("Connection", "keep-alive"));
+		BBMP_POST_HEADER.add(new BasicNameValuePair("Origin", "http://vigeyegpms.in"));
+		BBMP_POST_HEADER.add(new BasicNameValuePair("User-Agent", "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36"));
+		BBMP_POST_HEADER.add(new BasicNameValuePair("Content-Type", "application/x-www-form-urlencoded"));
+	}
 }

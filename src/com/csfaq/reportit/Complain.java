@@ -1,6 +1,15 @@
 package com.csfaq.reportit;
 
 
+import java.io.StringWriter;
+
+import org.apache.http.HttpRequest;
+import org.apache.http.HttpResponse;
+import org.apache.http.entity.StringEntity;
+
+import com.csfaq.reportit.Helper.ComplaintCreatorHelper;
+import com.csfaq.reportit.constants.Constants;
+import com.csfaq.reportit.utils.NetworkUtils;
 import com.csfaq.reportit.utils.Utils;
 import com.csfaq.reportit.R;
 import com.csfaq.reportit.MainActivity;
@@ -12,6 +21,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
@@ -83,8 +93,16 @@ public class Complain extends Fragment {
 		submitButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(getActivity(), "Thanks for submitting the complaint! We will get back to you shortly! )",
-						Toast.LENGTH_LONG).show();  
+				
+
+				 new DownloadFilesTask(getActivity()).execute();
+
+				
+				
+				
+				
+				
+ 
 
 				Utils.createNotification(MainActivity.getContext(), null, "Submit");
 
@@ -137,3 +155,40 @@ public class Complain extends Fragment {
 	}
 
 }
+
+
+class DownloadFilesTask extends AsyncTask<Void, Void, HttpResponse> {
+	
+	private Context mContext;
+	
+	public DownloadFilesTask(Context context) {
+		mContext = context;
+	}
+	
+    protected HttpResponse doInBackground(Void... urls) {
+    	
+		String body = ComplaintCreatorHelper.createBBMPPostBody("Subject", "Name", "999999999", "foo@bar.com", "195", "location", "complaint");
+		StringEntity se = null;
+		try {
+		 se = new StringEntity(body, "UTF-8");
+		} catch (Exception e) {
+			
+		}
+		return NetworkUtils.postData(Constants.BBMP_POST_URL, se, Constants.BBMP_POST_HEADER);
+    }
+
+    protected void onProgressUpdate(Void... progress) {
+    }
+
+    protected void onPostExecute(HttpResponse result) {
+    	
+    	String message = "";
+    	try {
+    		message = NetworkUtils.readIt(result.getEntity().getContent());
+    	} catch (Exception e) {
+    		
+    	}
+		Toast.makeText(mContext, message, Toast.LENGTH_LONG).show(); 
+    }
+}
+
