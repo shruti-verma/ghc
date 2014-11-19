@@ -35,7 +35,7 @@ public class SearchFragment extends Fragment {
 
 		View ios = inflater.inflate(R.layout.ios_frag, container, false);
 		final Spinner categorySpinner = (Spinner)ios.findViewById(R.id.spinner);
-		String[] categoryItems = getResources().getStringArray(R.array.complaint_category);
+		String[] categoryItems = SharedPreferenceHandler.getCategories(getActivity());
 		ArrayAdapter<String> aa = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, categoryItems);
 
 		categorySpinner.setAdapter(aa);

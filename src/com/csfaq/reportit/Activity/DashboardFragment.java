@@ -8,6 +8,7 @@ import com.csfaq.reportit.R;
 import com.csfaq.reportit.R.array;
 import com.csfaq.reportit.R.id;
 import com.csfaq.reportit.R.layout;
+import com.csfaq.reportit.db.SharedPreferenceHandler;
 import com.csfaq.reportit.plot.XAxisLabelFormat;
 
 import android.graphics.Paint;
@@ -29,7 +30,7 @@ public class DashboardFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		String[] categoryItems = getResources().getStringArray(R.array.complaint_category);
+		String[] categoryItems = SharedPreferenceHandler.getCategories(getActivity());
 
 		View windows = inflater.inflate(R.layout.windows_frag, container, false);
 		XYPlot byCategory = (XYPlot)windows.findViewById(R.id.ByCategoryXYPlot);
