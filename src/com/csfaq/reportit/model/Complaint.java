@@ -10,4 +10,9 @@ public class Complaint {
 	public String location;
 	public String complaintNum;
 	public String url;
+	
+	@Override
+	public String toString() {
+		return "Complaint in " + category + " " + comments;
+	}
 }

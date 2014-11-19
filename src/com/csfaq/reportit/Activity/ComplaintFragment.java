@@ -103,16 +103,14 @@ public class ComplaintFragment extends Fragment {
 
 				if (mCategory != null && !mCategory.isEmpty() &&
 						mComments != null && !mComments.isEmpty()) {
+					
 					mSubject = "Complaint on " + mCategory;	
-					//					mPhNum;
-					//					mEmail;
-					//					mLocation;
-					//					mComplaintNum;
-					//					mUrl;
+					mPhNum = "9999999999";
+					mEmail = "foo@bar.com";
+					mLocation = "Mandur";
+					mComplaintNum = "123";
+					mUrl = "http://vigeyegpms.in/bbmp/?module=helpdeskpublic&action=view-complaints";
 
-
-
-					//new DownloadFilesTask(getActivity()).execute();
 
 					// Save in Shared preference
 					Complaint complaint = new Complaint();
@@ -123,7 +121,7 @@ public class ComplaintFragment extends Fragment {
 
 
 
-
+					new DownloadFilesTask(getActivity()).execute(complaint);
 
 					// Create notifications
 					Utils.createNotification(MainActivity.getContext(), null, "Submit");
@@ -201,7 +199,7 @@ public class ComplaintFragment extends Fragment {
 }
 
 
-class DownloadFilesTask extends AsyncTask<Void, Void, HttpResponse> {
+class DownloadFilesTask extends AsyncTask<Complaint, Void, HttpResponse> {
 
 	private Context mContext;
 
@@ -209,9 +207,12 @@ class DownloadFilesTask extends AsyncTask<Void, Void, HttpResponse> {
 		mContext = context;
 	}
 
-	protected HttpResponse doInBackground(Void... urls) {
+	protected HttpResponse doInBackground(Complaint... complaints) {
 
-		String body = ComplaintCreatorHelper.createBBMPPostBody("Subject", "Name", "999999999", "foo@bar.com", "195", "location", "complaint");
+		Complaint complaint = complaints[0];
+		
+		//String body = ComplaintCreatorHelper.createBBMPPostBody("Subject", "Name", "999999999", "foo@bar.com", "195", "location", "complaint");
+		String body = ComplaintCreatorHelper.createBBMPPostBody(complaint.subject, "Anon", complaint.phNum, complaint.email, "195", complaint.location, complaint.comments);
 		StringEntity se = null;
 		try {
 			se = new StringEntity(body, "UTF-8");
