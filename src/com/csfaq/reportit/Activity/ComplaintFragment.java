@@ -26,11 +26,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.csfaq.reportit.R;
 import com.csfaq.reportit.Helper.ComplaintCreatorHelper;
 import com.csfaq.reportit.constants.Constants;
+import com.csfaq.reportit.db.SharedPreferenceHandler;
+import com.csfaq.reportit.model.Complaint;
 import com.csfaq.reportit.utils.NetworkUtils;
 import com.csfaq.reportit.utils.Utils;
 
@@ -38,24 +41,33 @@ public class ComplaintFragment extends Fragment {
 
 	// Code for our image picker select action.
 	private static final int IMAGE_PICKER_SELECT = 999;
+	private String mCategory;
+	private String mSubject;	
+	private String mComments;
+	private String mPhNum;
+	private String mEmail;
+	private String mLocation;
+	private String mComplaintNum;
+	private String mUrl;
+
+	private EditText mDescriptionTv;
+	private View mView;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		View android1 = inflater.inflate(R.layout.android_frag, container, false);
-		final Spinner categorySpinner = (Spinner)android1.findViewById(R.id.spinner);
+		mView = inflater.inflate(R.layout.complain_frag, container, false);
+		final Spinner categorySpinner = (Spinner)mView.findViewById(R.id.spinner);
 
 		String[] categoryItems = getResources().getStringArray(R.array.complaint_category);
 		ArrayAdapter<String> aa = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, categoryItems);
-
 		categorySpinner.setAdapter(aa);
-
-
 		categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 				Log.i("GHC", categorySpinner.getSelectedItem().toString() + "  " + categorySpinner.getSelectedItemPosition());
+				mCategory = categorySpinner.getSelectedItem().toString();
 
 			}
 
@@ -65,11 +77,10 @@ public class ComplaintFragment extends Fragment {
 			}
 		});
 
+		mDescriptionTv = (EditText) mView.findViewById(R.id.description);
+		mDescriptionTv.setText("");
 
-		EditText tv1 = (EditText) android1.findViewById(R.id.description);
-		tv1.setText("");
-
-		Button tv2 = (Button) android1.findViewById(R.id.ImageVideoPicker);
+		Button tv2 = (Button) mView.findViewById(R.id.ImageVideoPicker);
 		tv2.setOnClickListener(new OnClickListener() {
 
 
@@ -83,45 +94,74 @@ public class ComplaintFragment extends Fragment {
 
 
 
-		Button submitButton = (Button)android1.findViewById(R.id.Submit);
+		Button submitButton = (Button)mView.findViewById(R.id.Submit);
 		submitButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 
+				mComments = mDescriptionTv.getText().toString();
 
-				new DownloadFilesTask(getActivity()).execute();
-
-
-
-
-
-
-
-
-				Utils.createNotification(MainActivity.getContext(), null, "Submit");
-
-				// Post the notifications at a random time.
-				new Handler().postDelayed(new Runnable() {
-
-					@Override
-					public void run() {
-						// This method will be executed once the timer is over
-						Utils.createNotification(MainActivity.getContext(), null, "DBSubmit");
-					}
-				}, Utils.randInt(8000, 14000));
+				if (mCategory != null && !mCategory.isEmpty() &&
+						mComments != null && !mComments.isEmpty()) {
+					mSubject = "Complaint on " + mCategory;	
+					//					mPhNum;
+					//					mEmail;
+					//					mLocation;
+					//					mComplaintNum;
+					//					mUrl;
 
 
+
+					//new DownloadFilesTask(getActivity()).execute();
+
+					// Save in Shared preference
+					Complaint complaint = new Complaint();
+					complaint.category = mCategory;
+					complaint.comments = mComments;
+					complaint.subject = mSubject;
+					SharedPreferenceHandler.saveComplaints(getActivity(), complaint);
+
+
+
+
+
+					// Create notifications
+					Utils.createNotification(MainActivity.getContext(), null, "Submit");
+
+					// Post the notifications at a random time.
+					new Handler().postDelayed(new Runnable() {
+
+						@Override
+						public void run() {
+							// This method will be executed once the timer is over
+							Utils.createNotification(MainActivity.getContext(), null, "DBSubmit");
+						}
+					}, Utils.randInt(8000, 14000));
+
+					// refresh view
+					refreshCountViews();
+				} else {
+					Toast.makeText(getActivity(), "Enter all necessary fields", Toast.LENGTH_SHORT).show();
+				}
 
 			} });
 
 
-		final Spinner logasSpinner = (Spinner)android1.findViewById(R.id.logspinner);
+		final Spinner logasSpinner = (Spinner)mView.findViewById(R.id.logspinner);
 
 		String[] logItems = getResources().getStringArray(R.array.logas_category);
 		ArrayAdapter<String> logCat = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, logItems);
 		logasSpinner.setAdapter(logCat);
 
-		return android1;
+
+		return mView;
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		refreshCountViews();
+
 	}
 
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -146,6 +186,16 @@ public class ComplaintFragment extends Fragment {
 		String picturePath = cursor.getString(columnIndex);
 		cursor.close();
 		return BitmapFactory.decodeFile(picturePath);
+	}
+
+	public void refreshCountViews() {
+		TextView totalTv = (TextView) mView.findViewById(R.id.totalCount);
+		TextView completedTv = (TextView) mView.findViewById(R.id.completedCount);
+
+		if (totalTv != null && completedTv != null) {
+			totalTv.setText("" + SharedPreferenceHandler.getNumComplaints(getActivity()));
+			completedTv.setText("" + SharedPreferenceHandler.getNumCompletedComplaints(getActivity()));
+		}
 	}
 
 }
